@@ -16,7 +16,7 @@
       height: 100vh;
     }
 
-    /* Full-screen Background Slideshow */
+    /* Slideshow - Clearer Photos */
     #slideshow {
       position: fixed;
       top: 0;
@@ -35,12 +35,12 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 2s ease-in-out;
-      filter: brightness(70%); /* Brightened so photos are clearer */
+      filter: brightness(75%); /* Photos are now brighter */
     }
 
     .slide.active { opacity: 1; }
 
-    /* Opening Screen */
+    /* Start Screen */
     #start-screen {
       position: fixed;
       top: 0;
@@ -67,23 +67,23 @@
       box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
     }
 
-    /* THE GREETING CARD (Moved to Bottom-Left) */
+    /* GREETING STICKER (Moved to Bottom-Left) */
     .overlay {
       position: absolute;
-      bottom: 40px; /* Space from bottom */
-      left: 20px;   /* Space from left */
+      bottom: 30px; 
+      left: 20px;   
       width: auto;
       display: none;
       z-index: 50;
     }
 
     .greeting-sticker {
-      background: rgba(0, 0, 0, 0.6); /* Darker glass for better contrast */
+      background: rgba(0, 0, 0, 0.65); 
       backdrop-filter: blur(10px);
-      padding: 20px 25px;
+      padding: 20px;
       border-radius: 15px;
-      border-left: 5px solid #ff4d6d; /* Romantic accent line */
-      width: 280px; /* Smaller width so it doesn't cover the photo center */
+      border-left: 5px solid #ff4d6d;
+      width: 280px; 
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
@@ -165,16 +165,21 @@
       "Aur isi chakkar mein tumhe hurt kar deta hoon 💔",
       "Uske liye mujhe dil se afsos hai 🤍",
       "Par meri feelings kabhi fake nahi thi…",
+      "Na kal, na aaj, na kabhi ✨",
       "Anshika, tum meri life ka wo hissa ho…",
       "Jahan main sukoon mehsoos karta hoon 🫶",
       "Tumhari ek smile… 😊",
       "Mere hazaar problems ko shaant kar deti hai",
       "Is naye saal mein 🎊",
+      "Main sirf baatein nahi…",
       "Main effort dikhana chahta hoon 🌱",
       "Tumhara saath nibhana chahta hoon 🤞",
       "Tumhari aankhon mein khushi dekhna chahta hoon 🥺❤️",
+      "Chahe raahein perfect na ho…",
+      "Par mera irada hamesha saccha rahega 💞",
       "Anshika, main tumhe khona nahi chahta…",
       "Main tumhe hamesha chahna chahta hoon 💫",
+      "Iss saal bhi… aur aane wale har saal mein ✨",
       "Sirf tum, Anshika ❤️"
     ];
 
@@ -200,10 +205,9 @@
       startScreen.style.display = "none";
       mainContent.style.display = "block";
       
-      // AUDIO FAILSAFE: Load and play with error handling
       music.load();
       music.play().catch(() => {
-          // Retry logic for browsers
+          // If first try fails, try again on first user click
           document.addEventListener('click', () => music.play(), {once: true});
       });
       
@@ -226,6 +230,3 @@
   </script>
 </body>
 </html>
-
-
-    
