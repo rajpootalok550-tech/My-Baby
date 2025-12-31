@@ -12,12 +12,11 @@
       background: #000;
       color: white;
       font-family: 'Poppins', sans-serif;
-      text-align: center;
       overflow: hidden;
       height: 100vh;
     }
 
-    /* Slideshow for 10 Photos */
+    /* Full-screen Background Slideshow */
     #slideshow {
       position: fixed;
       top: 0;
@@ -36,7 +35,7 @@
       object-fit: cover;
       opacity: 0;
       transition: opacity 2s ease-in-out;
-      filter: brightness(40%);
+      filter: brightness(70%); /* Brightened so photos are clearer */
     }
 
     .slide.active { opacity: 1; }
@@ -48,24 +47,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #430000, #1a0000);
+      background: radial-gradient(circle at center, #5a0000, #000);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 100;
       cursor: pointer;
-    }
-
-    .envelope {
-      font-size: 70px;
-      margin-bottom: 20px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
     }
 
     #start-btn {
@@ -76,62 +64,41 @@
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 77, 109, 0.4);
-      font-family: 'Poppins', sans-serif;
-      letter-spacing: 1px;
+      box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
     }
 
-    /* Main Greeting Container */
+    /* THE GREETING CARD (Moved to Bottom-Left) */
     .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      bottom: 40px; /* Space from bottom */
+      left: 20px;   /* Space from left */
+      width: auto;
       display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;
+      z-index: 50;
     }
 
-    /* Elegant Card Style */
-    .greeting-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(15px);
-      padding: 45px 25px;
-      border-radius: 25px;
-      border: 1.5px solid rgba(255, 77, 109, 0.5);
-      width: 90%;
-      max-width: 450px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-      position: relative;
-    }
-
-    .greeting-card::before {
-      content: '💝';
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 35px;
+    .greeting-sticker {
+      background: rgba(0, 0, 0, 0.6); /* Darker glass for better contrast */
+      backdrop-filter: blur(10px);
+      padding: 20px 25px;
+      border-radius: 15px;
+      border-left: 5px solid #ff4d6d; /* Romantic accent line */
+      width: 280px; /* Smaller width so it doesn't cover the photo center */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .text {
       font-family: 'Dancing Script', cursive;
-      font-size: 1.7rem;
-      line-height: 1.5;
+      font-size: 1.4rem;
+      line-height: 1.4;
       color: #fff;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-align: left;
     }
 
-    .fadeIn { animation: fadeInAnim 2s forwards; }
+    .fadeIn { animation: fadeInAnim 1.5s forwards; }
     @keyframes fadeInAnim {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     .heart {
@@ -153,9 +120,9 @@
 <body>
 
   <div id="start-screen" onclick="startExperience()">
-    <div class="envelope">💌</div>
-    <h2 style="margin-bottom: 25px; font-family: 'Dancing Script'; font-size: 2.2rem;">For Anshika ❤️</h2>
-    <button id="start-btn">Open My Heart 💕</button>
+    <div style="font-size: 60px; margin-bottom: 10px;">💌</div>
+    <h2 style="font-family: 'Dancing Script'; font-size: 2rem;">For Anshika ❤️</h2>
+    <button id="start-btn">Click to Open 💕</button>
   </div>
 
   <div id="slideshow">
@@ -176,7 +143,7 @@
   </audio>
 
   <div class="overlay" id="main-content">
-    <div class="greeting-card">
+    <div class="greeting-sticker">
       <div id="message" class="text"></div>
     </div>
   </div>
@@ -188,7 +155,6 @@
     const mainContent = document.getElementById("main-content");
     const slides = document.querySelectorAll(".slide");
 
-    // Your Updated Messages
     const messages = [
       "Happy New Year, Anshika ❤️🎆",
       "Ye saal mere liye aasaan nahi tha… 🌧️",
@@ -199,21 +165,16 @@
       "Aur isi chakkar mein tumhe hurt kar deta hoon 💔",
       "Uske liye mujhe dil se afsos hai 🤍",
       "Par meri feelings kabhi fake nahi thi…",
-      "Na kal, na aaj, na kabhi ✨",
       "Anshika, tum meri life ka wo hissa ho…",
       "Jahan main sukoon mehsoos karta hoon 🫶",
-      "Tumhari ek smile…",
-      "Mere hazaar problems ko shaant kar deti hai 😊",
+      "Tumhari ek smile… 😊",
+      "Mere hazaar problems ko shaant kar deti hai",
       "Is naye saal mein 🎊",
-      "Main sirf baatein nahi…",
       "Main effort dikhana chahta hoon 🌱",
       "Tumhara saath nibhana chahta hoon 🤞",
       "Tumhari aankhon mein khushi dekhna chahta hoon 🥺❤️",
-      "Chahe raahein perfect na ho…",
-      "Par mera irada hamesha saccha rahega 💞",
       "Anshika, main tumhe khona nahi chahta…",
       "Main tumhe hamesha chahna chahta hoon 💫",
-      "Iss saal bhi… aur aane wale har saal mein ✨",
       "Sirf tum, Anshika ❤️"
     ];
 
@@ -231,24 +192,23 @@
       heart.className = "heart";
       heart.innerHTML = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 15 + 15) + "px";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
 
     function startExperience() {
       startScreen.style.display = "none";
-      mainContent.style.display = "flex";
+      mainContent.style.display = "block";
       
-      music.play().catch(e => console.log("Audio play failed", e));
+      // AUDIO FAILSAFE: Load and play with error handling
+      music.load();
+      music.play().catch(() => {
+          // Retry logic for browsers
+          document.addEventListener('click', () => music.play(), {once: true});
+      });
       
-      // Photos change every 5 seconds
       setInterval(nextSlide, 5000);
-      
-      // Hearts falling
-      setInterval(createHeart, 400);
-      
-      // Messages change every 4.5 seconds
+      setInterval(createHeart, 500);
       updateText();
       setInterval(updateText, 4500);
     }
@@ -264,6 +224,8 @@
       }, 600);
     }
   </script>
-
 </body>
 </html>
+
+
+    
